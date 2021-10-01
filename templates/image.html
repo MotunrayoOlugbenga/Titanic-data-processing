@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="{{url_for('static',filename='styles/ppy.css')}}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style type="text/css">
+    .btn-info{border-radius: 10%;background-color: #0742C1;}
+    .body{
+      background-color: #0009;
+      padding: 30px 0px;
+      height: auto;
+    }
+    .con{
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 0px 20px;
+    }
+    .header{
+      color: #0742C1;
+      font-family: serif;
+      font-size: 25px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    .bg-info{
+      background-color: #0742C1 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid body">
+    <div class="container con">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="header text-center">Fraudulent Transaction Detection</h1>
+        </div>
+      </div>
+      <div class="form-group" style="padding-bottom: 20px;">
+        <form action='/predict' method="post">
+          <div class="col-sm-12">
+            <h5 class="text-info">Predicting the probability of fraudulent transaction Occurence</h5>
+
+            <div class="row">
+              <div class=" col-lg-3">
+                <label for="first_name"><b>Transaction time:</b></label>
+              </div>
+              <div class=" col-lg-9">
+                <input placeholder="2016-10-05T01:44:58" name="transaction_time" type="text" class="form-control">
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class=" col-lg-3">
+                <label for="last_name"><b>Current Bank Amount: </b></label>
+              </div>
+              <div class=" col-lg-9">
+                <input name="current_bank_amount" type="text" class="form-control">
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class=" col-lg-3">
+                <label for="last_name"><b>Last Bank Amount: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <input id="last_bank_amount" name="last_bank_account" placeholder="1000"  type="text" class="form-control">
+              </div>
+            </div><p></p>
+
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Time Taken In Seconds: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <input id="time_taken_seconds" name="time_taken_seconds" placeholder="time" type="text" class="form-control">
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Most Recent Bank Amount: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <input id="most_recent_bank_amount" name="most_recent_bank_amount" placeholder="recent amount"  type="text" class="form-control">
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Age: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <input id="age" name="age" type="text" class="form-control">
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Account type: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <select name='account_type' class="form-control">
+                  <option value='savings'>Savings</option>
+                  <option value='current'>Current</option>
+                </select>
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Marital Status: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <select name='marital_status' class="form-control">
+                  <option value='Single'>Single</option>
+                  <option value='married'>Married</option>
+                  <option value='Divorced'>Divorced</option>
+                </select>
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Occupation: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <select name='occupation' class="form-control">
+                  <option value='Clergy'>Clergy</option>
+                  <option value='Accounting'>Accounting</option>
+                  <option value='Lecturer'>Lecturer</option>
+                  <option value='Banking'>Banking</option>
+                  <option value='Doctor'>Doctor</option>
+                  <option value='Farmer'>Farmer</option>
+                  <option value='Lawyer'>Lawyer</option>
+                  <option value='Musician'>Musician</option>
+                </select>
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Credit card Type: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <select name='credit_card_type' class="form-control">
+                  <option value='Verve'>Verve</option>
+                  <option value='Master'>Master</option>
+                </select>
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Account Source Verification: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <select name='account_source_verification' class="form-control">
+                  <option value='True'>True</option>
+                  <option value='False'>False</option>
+                </select>
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Transaction source method: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <select name='transaction_source_method' class="form-control">
+                  <option value='True'>True</option>
+                  <option value='False'>False</option>
+                </select>
+              </div>
+            </div><p></p>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="last_name"><b>Account destination verification: </b></label>
+              </div>
+              <div class="col-lg-9">
+                <select name='account_destination_verification' class="form-control">
+                  <option value='True'>True</option>
+                  <option value='False'>False</option>
+                </select>
+              </div>
+            </div>
+           <button type="submit" class="btn btn-info btn-block"><b>Predict Probability</b></button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+      <!--br>{{pred}}<br> {{features}}<br-->
+
+  <section class="page-footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="container">
+        
+          <p class="grey-text">I am a data scientist and I will love if you'll like and share my work.I will also love to get an intenship .</p>
+
+
+        </div>
+       
+      </div>
+    </div>
+   
+  </section> 
+
+</body>
+</html>
